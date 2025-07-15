@@ -126,7 +126,7 @@ const Agent = ({
       console.log("[handleCall] Calling vapi.start with generator workflow...");
 
       const startResponse = await vapi.start(
-        "ec505536-09f5-42d1-b8f9-adb00a920871",
+        undefined,
         {
           variableValues: {
             username: userName,
@@ -137,7 +137,7 @@ const Agent = ({
           serverMessages: [],
         }, 
         undefined,
-        generator       
+        "ec505536-09f5-42d1-b8f9-adb00a920871"       
       );
       
 
