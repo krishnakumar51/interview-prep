@@ -131,7 +131,7 @@ const Agent = ({
         undefined,
         "ec505536-09f5-42d1-b8f9-adb00a920871"
       );
-      console.log("userId passed to vapi.start():", userId);
+      
 
       console.log("[handleCall] generator vapi.start() response:", startResponse);
     } else {
