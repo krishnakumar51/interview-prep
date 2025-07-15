@@ -111,13 +111,17 @@ const Agent = ({
 
   const handleCall = async () => {
 
-  console.log({userId});
+  console.log("this is hadnlecall" , {userId});
   console.log("[handleCall] Start");
   setCallStatus(CallStatus.CONNECTING);
   console.log("[handleCall] Call status set to CONNECTING");
 
   try {
     if (type === "generate") {
+
+       console.log("this is hadnlecall-generate" , {userId});
+
+
       console.log("[handleCall] Type is 'generate'");
       console.log("[handleCall] Calling vapi.start with generator workflow...");
 
@@ -133,7 +137,7 @@ const Agent = ({
           serverMessages: [],
         }, 
         undefined,
-        undefined       
+        generator       
       );
       
 
