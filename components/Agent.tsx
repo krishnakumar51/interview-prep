@@ -37,6 +37,8 @@ const Agent = ({
 
   useEffect(() => {
     const onCallStart = () => {
+      console.log("at on call start", {userId} );
+
       setCallStatus(CallStatus.ACTIVE);
     };
     const onCallEnd = () => {
@@ -108,6 +110,8 @@ const Agent = ({
 
 
   const handleCall = async () => {
+
+  console.log({userId});
   console.log("[handleCall] Start");
   setCallStatus(CallStatus.CONNECTING);
   console.log("[handleCall] Call status set to CONNECTING");
@@ -118,7 +122,7 @@ const Agent = ({
       console.log("[handleCall] Calling vapi.start with generator workflow...");
 
       const startResponse = await vapi.start(
-        undefined,
+        process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID,
         {
           variableValues: {
             username: userName,
@@ -127,9 +131,7 @@ const Agent = ({
           // @ts-expect-error
           clientMessages: ["transcript"],
           serverMessages: [],
-        },
-        undefined,
-        "ec505536-09f5-42d1-b8f9-adb00a920871"
+        },        
       );
       
 
