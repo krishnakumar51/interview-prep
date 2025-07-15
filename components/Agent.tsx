@@ -122,7 +122,7 @@ const Agent = ({
       console.log("[handleCall] Calling vapi.start with generator workflow...");
 
       const startResponse = await vapi.start(
-        process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID,
+        "ec505536-09f5-42d1-b8f9-adb00a920871",
         {
           variableValues: {
             username: userName,
@@ -131,7 +131,9 @@ const Agent = ({
           // @ts-expect-error
           clientMessages: ["transcript"],
           serverMessages: [],
-        },        
+        }, 
+        undefined,
+        undefined       
       );
       
 
