@@ -125,3 +125,31 @@ export async function isAuthenticated(){
     // if user exists, it returns true, otherwise false
     return !!user; 
 }
+
+
+export async function getInterviewById(userId: string): Promise<Interview[] | null> {
+    const interview = await db.collection("interviews").where("userId", "==", userId).orderBy("createdAt", "desc").get();
+
+    return interview.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+    }))as Interview[];
+    
+}
+
+
+export async function getlatestInterviews(params: GetLatestInterviewsParams): Promise<Interview[] | null> {
+
+    const {userId, limit=20} = params;
+    const interview = await db.collection("interviews")
+                                .orderBy("createdAt", "desc")
+                                .where("finalized", "==", true)
+                                .where("userId", "!=", userId)
+                                .limit(limit).get();
+
+    return interview.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+    }))as Interview[];
+    
+}
