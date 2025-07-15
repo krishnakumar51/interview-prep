@@ -102,19 +102,24 @@ export async function getCurrentUser(): Promise<User | null> {
     }
 
     try {
+        console.log('Attempting to verify session cookie...');
         const decodedClaims = await auth.verifySessionCookie(sessionCookie, true);
+        console.log('Session cookie decoded. UID:', decodedClaims.uid);
         const userRecord = await db.collection('users').doc(decodedClaims.uid).get();
+        console.log('User record exists:', userRecord.exists);
         if (!userRecord.exists) {
+            console.log('User record does not exist for UID:', decodedClaims.uid);
             return null;
         }
 
+        console.log('User data retrieved:', userRecord.data());
         return{
             ...userRecord.data(),
             id: userRecord.id,
         }as User;
        
     } catch (error) {
-        console.error('Error verifying session cookie:', error);
+        console.error('Error verifying session cookie or fetching user record:', error);
         return null;
     }
 }
