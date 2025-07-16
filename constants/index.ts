@@ -584,7 +584,7 @@ export const generator: CreateWorkflowDTO = {
             "userid": {
               "type": "string",
               "description": "User ID passed from variableValues",
-              "value": "{{userid}}"
+              "value": "{{assistantOverrides.variableValues.userid}}"
             },
             "techstack": {
               "type": "string",
