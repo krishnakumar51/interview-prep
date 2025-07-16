@@ -9,7 +9,9 @@ export async function GET(){
 
 
 export async function POST(request: Request){
-    const {type, role, level, techstack, amount, userid} = await request.json();
+    const body = await request.json();
+    console.log('Received request body:', body);
+    const {type, role, level, techstack, amount, userid} = body;
 
     try {
 
